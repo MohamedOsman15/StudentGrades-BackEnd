@@ -1,8 +1,12 @@
 const router = require('express').Router()
-const StudentRouter = require('../routes/StudentRouter')
-const ClassRouter = require('../routes/ClassRouter')
 
-router.use('/students', StudentRouter)
-router.use('/classes', ClassRouter)
+const StudentRouter = require('./StudentRouter')
+const ClassRouter = require('./ClassRouter')
+const AuthRouter = require('./AuthRouter')
+const StudentClassListRouter = require('./StendClassListRouter')
+router.use('/student', StudentRouter)
+router.use('/class', ClassRouter)
+router.use('/auth', AuthRouter)
+router.use('/studentclasslist', StudentClassListRouter)
 
 module.exports = router
