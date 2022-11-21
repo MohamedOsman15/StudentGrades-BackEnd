@@ -14,9 +14,7 @@ const GetAllClasses = async (req, res) => {
 
 const GetOneClass = async (req, res) => {
   try {
-    const oneClass = await Class.findByPk(
-      req.params.id 
-    )
+    const oneClass = await Class.findByPk(req.params.id)
     console.log(`This is one class`, oneClass)
     res.send(oneClass)
   } catch (error) {
@@ -40,12 +38,7 @@ const GetOneClass = async (req, res) => {
 
 const CreateClass = async (req, res) => {
   try {
-    // let studentId = parseInt(req.params.student_Id)
-    let classContent = {
-      // studentId,
-      ...req.body
-    }
-    let Class = await Class.create(classContent)
+    let classContent = await Class.create({ ...req.body })
     res.send(classContent)
   } catch (error) {
     throw error
@@ -54,11 +47,15 @@ const CreateClass = async (req, res) => {
 
 const UpdateClass = async (req, res) => {
   try {
-    let classId = parseInt(req.params.classId)
-    let updatedClass = await Class.update(req.body, {
-      where: { id: classId }
-    })
-    res.send(updatedClass)
+    let classid = parseInt(req.params.classid)
+    let updatedClass = await Class.update(
+      { ...req.body },
+      {
+        where: { id: classid },
+        returning: true
+      }
+    )
+    res.send({ ...req.body })
   } catch (error) {
     throw error
   }

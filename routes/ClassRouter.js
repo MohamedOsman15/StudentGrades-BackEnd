@@ -15,5 +15,18 @@ router.get(
   // middleware.verifyToken,
   controller.GetOneClass
 )
+router.post(
+  '/',
+  // middleware.stripToken,
+  // middleware.verifyToken,
+  controller.CreateClass
+)
+
+router.put(
+  '/:classid',
+  // middleware.stripToken,
+  // middleware.verifyToken,
+  controller.UpdateClass
+)
 
 module.exports = router
