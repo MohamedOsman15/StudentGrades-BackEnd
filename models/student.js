@@ -13,21 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       Student.hasMany(models.Class, {
         as: 'current_class',
         foreignKey: 'studentId'
-      })
+    })
+    
       Student.belongsToMany(models.StudentClassList, {
         as: 'class_list',
         through: models.StudentClassList,
         foreignKey: 'studentId'
       })
     }
-    }
-    }
   }
   Student.init({
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    schoolId: DataTypes.INTEGER
-    Id: DataTypes.INTEGER
+    schoolId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Student',
