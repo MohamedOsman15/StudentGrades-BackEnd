@@ -3,20 +3,20 @@ const middleware = require('../middleware')
 
 const Login = async (req, res) => {
   try {
-    const student = await Students.findOne({
+    const user = await User.findOne({
       where: { email: req.body.email },
       raw: true
     })
     if (
-      student &&
+      user &&
       (await middleware.comparePassword(
-        student.passwordDigest,
+        user.passwordDigest,
         req.body.password
       ))
     ) {
       let payload = {
-        id: student.id,
-        email: student.email
+        id: user.id,
+        email: user.email
       }
       let token = middleware.createToken(payload)
       return res.send({ user: payload, token })
@@ -31,8 +31,8 @@ const Register = async (req, res) => {
   try {
     const { email, password, name } = req.body
     let passwordDigest = await middleware.hashPassword(password)
-    const student = await Patrons.create({ email, passwordDigest, name })
-    res.send(student)
+    const user = await User.create({ email, passwordDigest, name })
+    res.send(studuserent)
   } catch (error) {
     throw error
   }
@@ -40,13 +40,13 @@ const Register = async (req, res) => {
 
 const UpdatePassword = async (req, res) => {
   try {
-    const student = await Students.findOne({
+    const user = await Students.findOne({
       where: { email: req.body.email }
     })
     if (
-      student &&
+      user &&
       (await middleware.comparePassword(
-        student.dataValues.passwordDigest,
+        user.dataValues.passwordDigest,
         req.body.oldPassword
       ))
     ) {
