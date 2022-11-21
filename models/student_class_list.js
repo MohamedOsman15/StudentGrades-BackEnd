@@ -4,18 +4,12 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class StudentClassList extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
     }
   }
-  Student_Class_List.init({
+  StudentClassList.init({
     studentId: {
-      DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       onDelete: 'CASCADE',
       references: {
         model: 'students',
@@ -23,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     classId: {
-      DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       onDelete: 'CASCADE',
       references: {
         model: 'classes',
