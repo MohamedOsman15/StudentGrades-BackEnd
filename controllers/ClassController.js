@@ -1,5 +1,5 @@
 const { Student, Class, StudentClassList } = require('../models')
-const middleware = require('../middleware')
+// const middleware = require('../middleware')
 const { Model } = require('sequelize')
 // const schedule_exhibit = require('../models/schedule_exhibit')
 
@@ -12,31 +12,31 @@ const GetAllClasses = async (req, res) => {
   }
 }
 
-// const GetOneClass = async (req, res) => {
-//   try {
-//     const Class = await Class.findByPk({
-//       where: { studentId: req.params.studentId }
-//     })
-//     console.log(`This is one class`, Class)
-//     res.send(Class)
-//   } catch (error) {
-//     throw error
-//   }
-// }
-
-const GetStudentClasses = async (req, res) => {
+const GetOneClass = async (req, res) => {
   try {
-    const classes = await Class.findAll({
-      where: {
-        studentId: req.params.studentId
-      }
-    })
-    console.log(classes)
-    res.send(classes)
+    const oneClass = await Class.findByPk(
+      req.params.id 
+    )
+    console.log(`This is one class`, oneClass)
+    res.send(oneClass)
   } catch (error) {
     throw error
   }
 }
+
+// const GetStudentClasses = async (req, res) => {
+//   try {
+//     const classes = await Class.findAll({
+//       where: {
+//         studentId: req.params.studentId
+//       }
+//     })
+//     console.log(classes)
+//     res.send(classes)
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 const CreateClass = async (req, res) => {
   try {
@@ -76,7 +76,8 @@ const DeleteClass = async (req, res) => {
 
 module.exports = {
   GetAllClasses,
-  GetStudentClasses,
+  // GetStudentClasses,
+  GetOneClass,
   CreateClass,
   UpdateClass,
   DeleteClass

@@ -1,16 +1,16 @@
-const { Student, Class, StudentClassLists,sequelize } = require('./models')
-
+const { Student, Class, StudentClassLists, sequelize } = require('./models')
 
 const getOneStudentListWithGrades = async () => {
   try {
-    const list = await Student.findAll({where: {
-      id: req.params.id,
-    },
+    const list = await Student.findAll({
+      where: {
+        id: req.params.id
+      },
       include: [
         {
-          model: MediumArticle,
-          as: 'reading_list',
-          through: { attributes: [] }
+          model: Class,
+          as: 'class_list',
+          through: {}
         }
       ]
     })
