@@ -3,15 +3,15 @@ const { Model, DataTypes } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Class extends Model {
     static associate(models) {
-      Class.hasMany(models.Student, {
-        as: 'enrolled_student',
-        foreignKey: 'studentId'
-      })
-      Class.belongsToMany(models.StudentClassList, {
-        as: 'classes',
-        through: models.StudentClassList,
-        foreignKey: 'classId'
-      })
+      // Class.hasMany(models.Student, {
+      //   as: 'enrolled_student',
+      //   foreignKey: 'studentId'
+      // })
+      // Class.belongsToMany(models.StudentClassList, {
+      //   as: 'classes',
+      //   through: models.StudentClassList,
+      //   foreignKey: 'classId'
+      // })
     }
   }
 
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Class',
-      modelName: 'classes'
+      tableName: 'classes'
     }
   )
   return Class

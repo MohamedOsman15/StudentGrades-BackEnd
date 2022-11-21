@@ -6,5 +6,5 @@ router.get(
   '/',
   middleware.stripToken,
   middleware.verifyToken,
-  controller.GetGigs
+  controller.GetAllClasses
 )
