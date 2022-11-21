@@ -11,7 +11,7 @@ const GetAllStudents = async (req, res) => {
 
 const GetOneStudent = async (req, res) => {
   try {
-    const student = await Students.findByPk(req.params.id)
+    const student = await Student.findByPk(req.params.id)
     res.send(student)
   } catch (error) {
     throw error
@@ -21,7 +21,7 @@ const GetOneStudent = async (req, res) => {
 const createStudent = async (req, res) => {
   try {
     const studentInfo = { ...req.body }
-    const student = await Students.create(studentInfo)
+    const student = await Student.create(studentInfo)
     res.send(studentInfo)
   } catch (error) {
     throw error
@@ -31,7 +31,7 @@ const createStudent = async (req, res) => {
 const deleteStudent = async (req, res) => {
   try {
     const deletedStudent = parseInt(req.params.id)
-    await Students.destroy({ where: { id: deletedStudent } })
+    await Student.destroy({ where: { id: deletedStudent } })
     res.send({ message: `Deleted student with an ID of ${deletedStudent}` })
   } catch (error) {
     throw error

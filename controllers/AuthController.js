@@ -1,4 +1,4 @@
-const { Students } = require('../models')
+const { User } = require('../models')
 const middleware = require('../middleware')
 
 const Login = async (req, res) => {
@@ -9,10 +9,7 @@ const Login = async (req, res) => {
     })
     if (
       user &&
-      (await middleware.comparePassword(
-        user.passwordDigest,
-        req.body.password
-      ))
+      (await middleware.comparePassword(user.passwordDigest, req.body.password))
     ) {
       let payload = {
         id: user.id,
@@ -29,10 +26,10 @@ const Login = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
-    const { email, password, name } = req.body
+    const { email, password } = req.body
     let passwordDigest = await middleware.hashPassword(password)
-    const user = await User.create({ email, passwordDigest, name })
-    res.send(studuserent)
+    const user = await User.create({ email, passwordDigest })
+    res.send(user)
   } catch (error) {
     throw error
   }
