@@ -1,21 +1,18 @@
-const { Student, Class, StudentClassLists, sequelize } = require('./models')
+const { Student, Class, StudentClassLists, sequelize } = require('../models')
 
-const getOneStudentListWithGrades = async () => {
+const getStudentClasses = async (req, res) => {
   try {
-    const list = await Student.findAll({
-      where: {
-        id: req.params.id
-      },
-      include: [
-        {
-          model: Class,
-          as: 'class_list',
-          through: {}
-        }
-      ]
+    const data = await Student.findAll({
+      where: { id: req.params.id },
+      include: [{ model: Class, as: 'class_list', through: [] }]
     })
-    stringify(list)
+
+    res.send(data)
   } catch (error) {
-    console.log(error)
+    res.status(500).send({ error: error.message })
   }
+}
+
+module.exports = {
+  getStudentClasses
 }
