@@ -5,8 +5,8 @@ const ClassRouter = require('./ClassRouter')
 const AuthRouter = require('./AuthRouter')
 const StudentClassListRouter = require('./StudentClassListRouter')
 
-router.use('/student', StudentRouter)
-router.use('/class', ClassRouter)
+router.use('/students', StudentRouter)
+router.use('/classes', ClassRouter)
 router.use('/auth', AuthRouter)
 router.use('/studentclasslist', StudentClassListRouter)
 

@@ -4,29 +4,29 @@ const middleware = require('../middleware')
 
 router.get(
   '/',
-  // middleware.stripToken
-  // middleware.verifyToken
+  middleware.stripToken,
+  middleware.verifyToken,
   controller.GetAllStudents
 )
 
 router.post(
   '/',
-  // middleware.stripToken
-  // middleware.verifyToken
+  middleware.stripToken,
+  middleware.verifyToken,
   controller.createStudent
 )
 
-// router.get(
-//     '/:id',
-//     // middleware.stripToken,
-//     // middleware.verifyToken,
-//     controller.GetOneStudent
-//     )
+router.get(
+  '/:id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetOneStudent
+)
 
 router.delete(
   '/:id',
-  // middleware.stripToken
-  // middleware.verifyToken
+  middleware.stripToken,
+  middleware.verifyToken,
   controller.deleteStudent
 )
 
